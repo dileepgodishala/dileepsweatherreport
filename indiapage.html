@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" type="image/x-icon" href="Images/favicon.ico">
+    <title>Dileep's Weather Application</title>
+
+    <link rel="stylesheet" href="StyleSheet.css">
+    <script src="JavaScript.js"></script>
+    <script src="CurrentLocation.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body onload="displayTime();displayDate()" style="padding-top: 120px;">
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script
+        src="https://cdn.jsdelivr.net/gh/xcash/bootstrap-autocomplete@v2.3.5/dist/latest/bootstrap-autocomplete.min.js"></script>
+    <nav class="navbar navbar-expand-md navbar-dark bg-light fixed-top py-md-4">
+
+        <h1 class="navbar-brand display-1" style="color: rgb(255, 0, 0);">Dileep's Weather Report</h1>
+        <button class="navbar-toggler bg-dark" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <h2><a class="nav-link font-weight-bold" href="index.html"
+                            style="padding-left: 25px;padding-right: 25px;">Home</a>
+                    </h2>
+                </li>
+                <li class="nav-item">
+                    <h2><a class="nav-link font-weight-bold" href="indiapage.html"
+                            style="padding-left: 25px;padding-right: 25px;">INDIA</a>
+                    </h2>
+                </li>
+                <li class="nav-item">
+                    <h2><a class="nav-link font-weight-bold" href="worldwidepage.html"
+                            style="padding-left: 25px;padding-right: 25px;">World Wide</a>
+                    </h2>
+                </li>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm" align="center">
+                <h1 id="displayTime"></h1>
+                <h6 id="displayDate"></h6>
+                <br><br>
+                <h6 align="left">Click on the below Indian city names to know the temperature</h6>
+
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td scope="row"><a href="#" onclick="getWeatherOfLocation(city = 'visakhapatnam')">VIZAG</a>
+                            </td>
+                            <td scope="row"><a href="#" onclick="getWeatherOfLocation(city = 'kolkata')">KOLKATA</a>
+                            </td>
+                            <td scope="row"><a href="#" onclick="getWeatherOfLocation(city = 'chennai')">CHENNAI</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td scope="row"><a href="#" onclick="getWeatherOfLocation(city = 'madurai')">MADURAI</a>
+                            </td>
+                            <td scope="row"><a href="#" onclick="getWeatherOfLocation(city = 'kochi')">KOCHI</a></td>
+                            <td scope="row"><a href="#" onclick="getWeatherOfLocation(city = 'agra')">AGRA</a></td>
+                        </tr>
+
+                        <tr>
+                            <td scope="row"><a href="#" onclick="getWeatherOfLocation(city = 'JAIPUR')">JAIPUR</a></td>
+                            <td scope="row"><a href="#" onclick="getWeatherOfLocation(city = 'AHMEDABAD')">AHMEDABAD</a>
+                            </td>
+                            <td scope="row"><a href="#" onclick="getWeatherOfLocation(city = 'INDORE')">INDORE</a></td>
+                        </tr>
+
+                        <tr>
+                            <td scope="row"><a href="#" onclick="getWeatherOfLocation(city = 'MANALI')">MANALI</a></td>
+                            <td scope="row"><a href="#" onclick="getWeatherOfLocation(city = 'AMRITSAR')">AMRITSAR</a>
+                            </td>
+                            <td scope="row"><a href="#" onclick="getWeatherOfLocation(city = 'Dallas')">NAGPUR</a></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm" align="center"  id='tempView'>
+                <br>
+                <h6 align="left">You can also find the temperature of other cities by entering the name of any city
+                    allover the world and click on the submit button.</h6>
+                <br>
+                <div class="main">
+                    <div class="input-group input-group-lg" >
+                        <input type="text" id="cityName" class="form-control" aria-label="Large"
+                            aria-describedby="inputGroup-sizing-sm" placeholder="Enter a city Name" required>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-success" id="submit1" onclick="getWeather()">Submit</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="viewTemp">
+                    <br>
+                    <h1 id="temperature" class="display-1"></h1>
+                    <p id="tempfeel"></p>
+                    <h3 id="cityName1"></h3>
+                    <h1 id="country"></h1>
+
+                </div>
+            </div>
+
+            <div class="col-sm" align="center" id="col3">
+                <h1 id="otherParams" style="color: red;">Other Parameters</h1>
+                <!-- On rows -->
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Latitude</th>
+                            <th>
+                                <p id="coords_lat"></p>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th scope="row">Longitude</th>
+                            <th>
+                                <p id="coords_lon"></p>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th scope="row">Humidity</th>
+                            <th>
+                                <p id="humidity"></p>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th scope="row">Pressure</th>
+                            <th>
+                                <p id="pressure"></p>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th scope="row">Description</th>
+                            <th>
+                                <p id="weather_desc"></p>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th scope="row">Wind speed</th>
+                            <th>
+                                <p id="wind_speed"></p>
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow border-warning">
+                    <img class="card-img-top" src="Images/cities/hyderabad.jpeg" alt="Card image cap">
+                    <div class="card-body">
+                        <p class="card-text"><b>Hyderabad</b> is the capital of southern India's Telangana state. A
+                            major center for the technology industry.
+                        </p>
+                        <button type="button" class="btn btn-primary btn-lg btn-block"
+                            onclick="getWeatherOfLocation(city='hyderabad')">Get Temperature</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow border-warning">
+                    <img class="card-img-top" src="Images/cities/warangal.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <p class="card-text"><b>Warangal</b> is a city in Telangana. It was the capital of the Kakatiya
+                            dynasty from the 12th to 14th centuries.
+                        </p>
+                        <button type="button" class="btn btn-primary btn-lg btn-block"
+                            onclick="getWeatherOfLocation(city='warangal')">Get Temperature</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow border-warning">
+                    <img class="card-img-top" src="Images/cities/mumbai.jpg" alt="Card image cap"
+                        style="height: 230px;">
+                    <div class="card-body">
+                        <p class="card-text"><b>Mumbai</b> (formerly called Bombay) is a densely populated city on
+                            India’s west coast. It's India's largest city.
+                        </p>
+                        <button type="button" class="btn btn-primary btn-lg btn-block"
+                            onclick="getWeatherOfLocation(city='mumbai')">Get Temperature</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow border-warning">
+                    <img class="card-img-top" src="Images/cities/delhi.jpg" alt="Card image cap" style="height: 210px;">
+                    <div class="card-body">
+                        <p class="card-text"><b>Delhi</b>, India’s capital territory, is a metropolitan city. Entire
+                            Public transport system in Delhi runs on CNG.
+                        </p>
+                        <button type="button" class="btn btn-primary btn-lg btn-block"
+                            onclick="getWeatherOfLocation(city='delhi')">Get Temperature</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow border-warning">
+                    <img class="card-img-top" src="Images/cities/banglore.jpg" alt="Card image cap"
+                        style="height: 210px;">
+                    <div class="card-body">
+                        <p class="card-text"><b>Bengaluru </b>(also called Bangalore) is the capital of India's southern
+                            Karnataka state. The center of India's high-tech industry.
+                        </p>
+                        <button type="button" class="btn btn-primary btn-lg btn-block"
+                            onclick="getWeatherOfLocation(city='bengaluru')">Get Temperature</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow border-warning">
+                    <img class="card-img-top" src="Images/cities/goa.jpeg" alt="Card image cap" style="height: 210px;">
+                    <div class="card-body">
+                        <p class="card-text"><b>Goa</b> is a state in western India with coastlines stretching along the
+                            Arabian Sea. Goa is popularly known for it's Beaches.
+                        </p>
+                        <button type="button" class="btn btn-primary btn-lg btn-block"
+                            onclick="getWeatherOfLocation(city='goa')">Get Temperature</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow border-warning">
+                    <img class="card-img-top" src="Images/cities/pune.jpeg" alt="Card image cap" style="height: 210px;">
+                    <div class="card-body">
+                        <p class="card-text"><b>Pune</b> is a sprawling city in the state of Maharashtra. It was once
+                            the base of the Peshwas of the Maratha Empire
+                        </p>
+                        <button type="button" class="btn btn-primary btn-lg btn-block"
+                            onclick="getWeatherOfLocation(city='pune')">Get Temperature</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow border-warning">
+                    <img class="card-img-top" src="Images/cities/shimla.jpeg" alt="Card image cap"
+                        style="height: 210px;">
+                    <div class="card-body">
+                        <p class="card-text"><b>Shimla</b> is the capital of the northern Indian state of Himachal
+                            Pradesh, in the Himalayan foothills.
+                        </p>
+                        <button type="button" class="btn btn-primary btn-lg btn-block"
+                            onclick="getWeatherOfLocation(city='shimla')">Get Temperature</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow border-warning">
+                    <img class="card-img-top" src="Images/cities/mysore.jpeg" alt="Card image cap"
+                        style="height: 210px;">
+                    <div class="card-body">
+                        <p class="card-text"><b>Mysore</b> Mysore (or Mysuru), a city Karnataka
+                            state, was the capital of the Kingdom of Mysore from 1399 to 1947.
+                        </p>
+                        <button type="button" class="btn btn-primary btn-lg btn-block"
+                            onclick="getWeatherOfLocation(city='mysore')">Get Temperature</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-primary" onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+    <footer class="footer">
+        <div class="container">
+            <a href="https://www.facebook.com/Dileep.Godishala" class="fa fa-facebook"></a>
+            <a href="https://twitter.com/godishaladileep" class="fa fa-twitter"></a>
+            <br>
+            <span class="text-muted">2020 &copy; Dileep Godishala. All Rights Reserved.</span>
+        </div>
+    </footer>
+
+</body>
+
+</html>

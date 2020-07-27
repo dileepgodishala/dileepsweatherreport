@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" type="image/x-icon" href="Images/favicon.ico">
+    <title>Dileep's Weather Application</title>
+
+    <link rel="stylesheet" href="StyleSheet.css">
+    <script src="JavaScript.js"></script>
+    <script src="CurrentLocation.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body onload="displayTime();displayDate()" style="padding-top: 120px;">
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script
+        src="https://cdn.jsdelivr.net/gh/xcash/bootstrap-autocomplete@v2.3.5/dist/latest/bootstrap-autocomplete.min.js"></script>
+    <nav class="navbar navbar-expand-md navbar-dark bg-light fixed-top py-md-4">
+
+        <h1 class="navbar-brand display-1" style="color: rgb(255, 0, 0);">Dileep's Weather Report</h1>
+        <button class="navbar-toggler bg-dark" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <h2><a class="nav-link font-weight-bold" href="index.html"
+                            style="padding-left: 25px;padding-right: 25px;">Home</a>
+                    </h2>
+                </li>
+                <li class="nav-item">
+                    <h2><a class="nav-link font-weight-bold" href="indiapage.html"
+                            style="padding-left: 25px;padding-right: 25px;">INDIA</a>
+                    </h2>
+                </li>
+                <li class="nav-item">
+                    <h2><a class="nav-link font-weight-bold" href="worldwidepage.html"
+                            style="padding-left: 25px;padding-right: 25px;">World Wide</a>
+                    </h2>
+                </li>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm" align="center">
+                <h1 id="displayTime"></h1>
+                <h6 id="displayDate"></h6>
+                <br><br>
+                <h6 align="left">Click on the below city names to know the temperature</h6>
+
+                <table class="table" align="left">
+                    <tbody>
+                        <tr>
+                            <td scope="row"><a href="#" onclick="getWeatherOfLocation(city = 'Toronto')">TORONTO</a>
+                            </td>
+                            <td scope="row"><a href="#" onclick="getWeatherOfLocation(city = 'PHUKET')">PHUKET</a></td>
+                            <td scope="row"><a href="#" onclick="getWeatherOfLocation(city = 'venice, IT')">VENICE</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td scope="row"><a href="#" onclick="getWeatherOfLocation(city = 'Maldives')">MALDIVES</a>
+                            </td>
+                            <td scope="row"><a href="#" onclick="getWeatherOfLocation(city = 'Amsterdam')">AMSTERDAM</a>
+                            </td>
+                            <td scope="row"><a href="#" onclick="getWeatherOfLocation(city = 'Costa Rica')">COSTA</a></td>
+                        </tr>
+
+                        <tr>
+                            <td scope="row"><a href="#"
+                                    onclick="getWeatherOfLocation(city = 'WASHINGTON')">WASHINGTON</a></td>
+                            <td scope="row"><a href="#" onclick="getWeatherOfLocation(city = 'NIAGARA')">NIAGARA</a>
+                            </td>
+                            <td scope="row"><a href="#" onclick="getWeatherOfLocation(city = 'BALI')">BALI</a></td>
+                        </tr>
+
+                        <tr>
+                            <td scope="row"><a href="#" onclick="getWeatherOfLocation(city = 'Barcelona')">BARCELONA</a>
+                            </td>
+                            <td scope="row"><a href="#" onclick="getWeatherOfLocation(city = 'Havana')">HAVANA</a></td>
+                            <td scope="row"><a href="#" onclick="getWeatherOfLocation(city = 'Lisbon')">LISBON</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm" align="center" id='tempView'>
+                <br>
+                <h6 align="left">You can also find the temperature of other cities by entering the name of any city
+                    allover the world and click on the submit button.</h6>
+                <br>
+                <div class="main">
+                    <div class="input-group input-group-lg" id='tempView'>
+                        <input type="text" id="cityName" class="form-control" aria-label="Large"
+                            aria-describedby="inputGroup-sizing-sm" placeholder="Enter a city Name" required>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-success" id="submit1" onclick="getWeather()">Submit</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <br>
+                    <h1 id="temperature" class="display-1"></h1>
+                    <p id="tempfeel"></p>
+                    <h3 id="cityName1"></h3>
+                    <h1 id="country"></h1>
+
+                </div>
+            </div>
+
+            <div class="col-sm" align="center" id="col3">
+                <h1 id="otherParams" style="color: red;">Other Parameters</h1>
+                <!-- On rows -->
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Latitude</th>
+                            <th>
+                                <p id="coords_lat"></p>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th scope="row">Longitude</th>
+                            <th>
+                                <p id="coords_lon"></p>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th scope="row">Humidity</th>
+                            <th>
+                                <p id="humidity"></p>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th scope="row">Pressure</th>
+                            <th>
+                                <p id="pressure"></p>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th scope="row">Description</th>
+                            <th>
+                                <p id="weather_desc"></p>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th scope="row">Wind speed</th>
+                            <th>
+                                <p id="wind_speed"></p>
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow border-warning">
+                    <img class="card-img-top" src="Images/World cities/paris.jpeg" alt="Card image cap">
+                    <div class="card-body">
+                        <p class="card-text"><b>Paris</b>, France's capital, is a major European city and a global
+                            center for art, fashion, gastronomy and culture.
+                        </p>
+                        <button type="button" class="btn btn-primary btn-lg btn-block"
+                            onclick="getWeatherOfLocation(city='paris')">Get Temperature</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow border-warning">
+                    <img class="card-img-top" src="Images/World cities/rome.jpeg" alt="Card image cap">
+                    <div class="card-body">
+                        <p class="card-text"><b>Rome</b> is the capital city and a special comune of Italy as well as
+                            the capital of the Lazio region.
+                        </p>
+                        <button type="button" class="btn btn-primary btn-lg btn-block"
+                            onclick="getWeatherOfLocation(city='rome')">Get Temperature</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow border-warning">
+                    <img class="card-img-top" src="Images/World cities/newYork.jpeg" alt="Card image cap"
+                        style="height: 230px;">
+                    <div class="card-body">
+                        <p class="card-text"><b>New York</b> is the safest metropolis of the US, with a crime rate even
+                            lower than the national average.
+                        </p>
+                        <button type="button" class="btn btn-primary btn-lg btn-block"
+                            onclick="getWeatherOfLocation(city='New York')">Get Temperature</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow border-warning">
+                    <img class="card-img-top" src="Images/World cities/tokyo.jpeg" alt="Card image cap"
+                        style="height: 210px;">
+                    <div class="card-body">
+                        <p class="card-text"><b>Tokyo</b>, Japan’s busy capital, mixes the ultramodern and the
+                            traditional, from neon-lit skyscrapers to historic temples.
+                        </p>
+                        <button type="button" class="btn btn-primary btn-lg btn-block"
+                            onclick="getWeatherOfLocation(city='Tokyo')">Get Temperature</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow border-warning">
+                    <img class="card-img-top" src="Images/World cities/sydney.jpeg" alt="Card image cap"
+                        style="height: 210px;">
+                    <div class="card-body">
+                        <p class="card-text"><b>Sydney </b>, capital of New South Wales and one of the largest cities,
+                            is best known for its harbourfront Sydney Opera House.
+                        </p>
+                        <button type="button" class="btn btn-primary btn-lg btn-block"
+                            onclick="getWeatherOfLocation(city='Sydney')">Get Temperature</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow border-warning">
+                    <img class="card-img-top" src="Images/World cities/dubai.jpeg" alt="Card image cap"
+                        style="height: 210px;">
+                    <div class="card-body">
+                        <p class="card-text"><b>Dubai</b> is a city and emirate in the United Arab Emirates known for
+                            ultramodern architecture and a lively nightlife scene.
+                        </p>
+                        <button type="button" class="btn btn-primary btn-lg btn-block"
+                            onclick="getWeatherOfLocation(city='Dubai')">Get Temperature</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow border-warning">
+                    <img class="card-img-top" src="Images/World cities/losAngeles.jpeg" alt="Card image cap"
+                        style="height: 210px;">
+                    <div class="card-body">
+                        <p class="card-text"><b>Los Angeles</b> is a sprawling Southern California city and the center
+                            of the nation’s film and television industry.
+                        </p>
+                        <button type="button" class="btn btn-primary btn-lg btn-block"
+                            onclick="getWeatherOfLocation(city='los angeles')">Get Temperature</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow border-warning">
+                    <img class="card-img-top" src="Images/World cities/SnFrancisco.jpeg" alt="Card image cap"
+                        style="height: 210px;">
+                    <div class="card-body">
+                        <p class="card-text"><b>San Francisco</b> A popular tourist destination, known for its cool
+                            summers, steep rolling hills and Golden Gate Bridge.
+                        </p>
+                        <button type="button" class="btn btn-primary btn-lg btn-block"
+                            onclick="getWeatherOfLocation(city='San Francisco')">Get Temperature</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow border-warning">
+                    <img class="card-img-top" src="Images/World cities/london.jpeg" alt="Card image cap"
+                        style="height: 210px;">
+                    <div class="card-body">
+                        <p class="card-text"><b>London</b>, the capital of England and the United Kingdom, is a
+                            21st-century city with history stretching back to Roman times.
+                        </p>
+                        <button type="button" class="btn btn-primary btn-lg btn-block"
+                            onclick="getWeatherOfLocation(city='london')">Get Temperature</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-primary" onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+    <footer class="footer">
+        <div class="container">
+            <a href="https://www.facebook.com/Dileep.Godishala" class="fa fa-facebook"></a>
+            <a href="https://twitter.com/godishaladileep" class="fa fa-twitter"></a>
+            <br>
+            <span class="text-muted">2020 &copy; Dileep Godishala. All Rights Reserved.</span>
+        </div>
+    </footer>
+</body>
+
+</html>
