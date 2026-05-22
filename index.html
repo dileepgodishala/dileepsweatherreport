@@ -187,7 +187,13 @@
 			<a href="https://github.com/dileepgodishala/dileepsweatherreport" class="fa fa-github"></a>
 			
             <br>
-            <span class="text-muted">2026 &copy; Dileep Godishala. All Rights Reserved.</span>
+            <span class="text-muted">
+            <span id="year"></span> &copy; Dileep Godishala. All Rights Reserved.
+            </span>
+
+            <script>
+            document.getElementById("year").textContent = new Date().getFullYear();
+            </script>
         </div>
     </footer>
 
